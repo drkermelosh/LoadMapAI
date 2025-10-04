@@ -1,0 +1,17 @@
+{
+  "editor.formatOnSave": true,
+  "python.analysis.typeCheckingMode": "basic",
+
+  // Choose ONE formatter you actually use:
+  // If you use Ruff:
+  // "editor.defaultFormatter": "charliermarsh.ruff",
+  // If you use Black:
+  // "editor.defaultFormatter": "ms-python.black-formatter",
+
+  // VS Code will auto-detect .venv; if not, use Command Palette:
+  // "Python: Select Interpreter" and pick ./.venv
+  "files.exclude": {
+    "**/__pycache__": true,
+    "**/.pytest_cache": true
+  }
+}

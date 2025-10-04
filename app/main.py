@@ -14,7 +14,3 @@ app.include_router(routes_plans.router, prefix="/plans", tags=["plans"])
 @app.get("/")
 def root():
     return {"message": "Welcome to LoadMap AI"}
-
-@app.get("/health")
-def health():
-    return {"status": "ok"}
