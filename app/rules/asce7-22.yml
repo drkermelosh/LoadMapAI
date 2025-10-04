@@ -1,0 +1,16 @@
+version: ASCE7-22
+mappings:
+  ResidentialSleeping:
+    uniform_psf: 30
+    code_ref: "ASCE 7-22 Table 4.3-1"
+  ResidentialLiving:
+    uniform_psf: 40
+    code_ref: "ASCE 7-22 Table 4.3-1"
+  Office:
+    uniform_psf: 50
+    code_ref: "ASCE 7-22 Table 4.3-1"
+abbrev:
+  BR: ResidentialSleeping
+  BED: ResidentialSleeping
+  LIVING: ResidentialLiving
+  OFFICE: Office
