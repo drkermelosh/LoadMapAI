@@ -12,5 +12,8 @@ mappings:
 abbrev:
   BR: ResidentialSleeping
   BED: ResidentialSleeping
+  MBR: ResidentialSleeping
   LIVING: ResidentialLiving
+  LVG: ResidentialLiving
   OFFICE: Office
+  OFC: Office
