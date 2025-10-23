@@ -1,11 +1,11 @@
 {
-  "version": "2.0.0",
-  "tasks": [
-    {
-      "label": "Run API",
-      "type": "shell",
-      "command": "uvicorn app.main:app --reload",
-      "problemMatcher": []
-    }
-  ]
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Run API",
+            "type": "shell",
+            "command": "uvicorn app.main:app --reload",
+            "problemMatcher": []
+        }
+    ]
 }

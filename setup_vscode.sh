@@ -13,8 +13,9 @@ cat > .vscode/launch.json << 'EOF'
       "type": "python",
       "request": "launch",
       "module": "uvicorn",
-      "args": ["app.main:app", "--reload"],
+      "args": ["app.main:app", "--reload", "--host", "127.0.0.1", "--port", "8000"],
       "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}",
       "env": { "PYTHONUNBUFFERED": "1" }
     }
   ]
