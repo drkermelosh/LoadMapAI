@@ -1,19 +1,12 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException, Query
 from typing import List, Optional
-from pydantic import BaseModel
-from app.services.rules_engine import label_to_category, category_to_load
+from app.models.schemas import RoomOut
+from app.services.rules.rules_engine import label_to_category, category_to_load
 
-router = APIRouter()
 
-class RoomOut(BaseModel):
-    id: str
-    raw_label: str
-    category: Optional[str] = None
-    load: Optional[dict] = None
-    confidence: float = 0.0
-    needs_review: bool = False
+router = APIRouter(prefix="/plans", tags=["rooms"])
 
-# stub data
+# stub data just for prototyping
 _FAKE_ROOMS = [
     {"id": "1", "raw_label": "BED",    "confidence": 0.98},
     {"id": "2", "raw_label": "LIVING", "confidence": 0.95},
@@ -27,9 +20,11 @@ def get_rooms(plan_id: str):
         cat = label_to_category(r["raw_label"])
         load = category_to_load(cat) if cat else None
         needs_review = (load is None) or (r["confidence"] < 0.90)
+        
         out.append(
             RoomOut(
                 id=r["id"],
+                plan_id=plan_id,
                 raw_label=r["raw_label"],
                 category=cat,
                 load=load,

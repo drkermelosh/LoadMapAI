@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Query
-from app.services.rules_engine import map_label_to_load
+from app.services.rules.rules_engine import map_label_to_load
 
 router = APIRouter()
 
