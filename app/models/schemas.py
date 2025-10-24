@@ -30,12 +30,10 @@ class RoomOut(BaseModel):
     id: str
     plan_id: str
     raw_label: str
-    name: str
     category: Optional[str] = None
     load: Optional[Dict] = None
     confidence: float = 0.0
     needs_review: bool = False
-    area_sf: float = Field(..., ge=0)
     # boundary: Optional[Polygon] = Field(..., description="Room polygon as [(x,y),...]")
     # room_type: Optional[str] = Field(None, description="Semantic Label, e.g., office, corridor, bedroom")
     # centroid: Optional[Coord] = Field(None, description="(x,y) centroid of room polygon")
