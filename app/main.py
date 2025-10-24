@@ -4,7 +4,7 @@ from app.api.routers import files, jobs, rooms, rules
 app = FastAPI(
     title="LoadMap AI",
     version="0.1.0",
-    description="Engineer-ready tool for generating draft load maps from architectural plans."
+    description="Engineer-readyv tool for generating draft load maps from architectural plans."
 )
 
 app.include_router(files.router, prefix="/files", tags=["files"])
