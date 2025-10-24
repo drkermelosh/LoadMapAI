@@ -36,12 +36,12 @@ class RoomOut(BaseModel):
     confidence: float = 0.0
     needs_review: bool = False
     area_sf: float = Field(..., ge=0)
-    boundary: Polygon = Field(..., description="Room polygon as [(x,y),...]")
-    room_type: Optional[str] = Field(None, description="Semantic Label, e.g., office, corridor, bedroom")
-    centroid: Optional[Coord] = Field(None, description="(x,y) centroid of room polygon")
-    load_zone: Optional[Literal["A", "B", "C", "D"]] = Field(
-        None, description="Optional load category for downstream mapping")
-    overlay_url: Optional[str] = Field(None, description="Optional image/titles URL for front-end overlay")
+    # boundary: Optional[Polygon] = Field(..., description="Room polygon as [(x,y),...]")
+    # room_type: Optional[str] = Field(None, description="Semantic Label, e.g., office, corridor, bedroom")
+    # centroid: Optional[Coord] = Field(None, description="(x,y) centroid of room polygon")
+    # load_zone: Optional[Literal["A", "B", "C", "D"]] = Field(
+        # None, description="Optional load category for downstream mapping")
+    # overlay_url: Optional[str] = Field(None, description="Optional image/titles URL for front-end overlay")
 
     # pydantic v2 compatibility for ORM if needed
 

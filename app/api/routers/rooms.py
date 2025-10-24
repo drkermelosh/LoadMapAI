@@ -26,10 +26,12 @@ def get_rooms(plan_id: str):
                 id=r["id"],
                 plan_id=plan_id,
                 raw_label=r["raw_label"],
+                name=r["raw_label"],
                 category=cat,
                 load=load,
                 confidence=r["confidence"],
                 needs_review=needs_review,
-            )
+                area_sf=0.0,
+            ) 
         )
     return out
