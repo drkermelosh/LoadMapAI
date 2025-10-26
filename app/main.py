@@ -1,4 +1,6 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
+from fastapi.exceptions import HTTPException as StarletteHTTPException
+from fastapi.responses import JSONResponse
 from app.api.routers import files, jobs, plans, rooms, rules
 
 app = FastAPI(
@@ -12,6 +14,16 @@ app.include_router(plans.router, prefix="/plans", tags=["plans"])
 app.include_router(jobs.router, prefix="/jobs", tags=["jobs"])
 app.include_router(rooms.router, tags=["rooms"])
 app.include_router(rules.router, prefix="/rules", tags=["rules"])
+
+# Unified error payload: {"error": {"code": <int>, "message", "<detail>""}}
+@app.exception_handler(StarletteHTTPException)
+async def http_exception_handlet(
+    request: Request,
+    exc: StarletteHTTPException):
+    return JSONResponse(
+        status_code=exc.status_code,
+        content={"error": {"code": exc.status_code, "message": exc.detail}},
+    )
 
 @app.get("/")
 def root():
