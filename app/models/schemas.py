@@ -1,5 +1,6 @@
 from __future__ import annotations
-from typing import List, Tuple, Optional, Literal, Dict
+from enum import Enum
+from typing import Any, List, Tuple, Optional, Literal, Dict
 from pydantic import BaseModel, Field
 
 try:
@@ -34,17 +35,28 @@ class RoomOut(BaseModel):
     load: Optional[Dict] = None
     confidence: float = 0.0
     needs_review: bool = False
-    # boundary: Optional[Polygon] = Field(..., description="Room polygon as [(x,y),...]")
-    # room_type: Optional[str] = Field(None, description="Semantic Label, e.g., office, corridor, bedroom")
-    # centroid: Optional[Coord] = Field(None, description="(x,y) centroid of room polygon")
-    # load_zone: Optional[Literal["A", "B", "C", "D"]] = Field(
-        # None, description="Optional load category for downstream mapping")
-    # overlay_url: Optional[str] = Field(None, description="Optional image/titles URL for front-end overlay")
 
-    # pydantic v2 compatibility for ORM if needed
+class SortBy(str, Enum):
+    raw_label = "raw_label"
+    category = "category"
+    confidence = "confidence"
 
-    if 'ConfigDict' in globals():
-        model_config = ConfigDict(from_attributes=True)
-    else:  # Pydantic v1 fallback
-        class Config:
-            orm_mode = True
+class SortOrder(str, Enum):
+    asc = "asc"
+    desc = "desc"
+
+class RoomsMeta(BaseModel):
+    total: int = Field(..., description="Total number of rooms available for plan before filters")
+    count: int = Field(..., description="Number of rooms returned in this response (after fileters, after pagination)")
+    limit: int = Field(..., ge=1, description="Limit/number of rooms requested")
+    offset: int = Field(..., ge=0, description="The starting index of the returned rooms")
+    next_offset: Optional[int] = Field(None, description="Offset for next page if any")
+    reviewed: int = Field(..., description="Rooms not needing review in filtered set (pre-pagination)")
+    needs_review: int = Field(..., description="Rooms needing review in filtered set (pre-pagination)")
+    sort_by: SortBy
+    sort_order: SortOrder
+    filters: Dict[str, Any]
+
+class RoomsResponse(BaseModel):
+    items: List[RoomOut]
+    meta: RoomsMeta

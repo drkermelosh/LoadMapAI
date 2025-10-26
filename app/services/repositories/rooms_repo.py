@@ -10,7 +10,7 @@ def seed_rooms(plan_id: str):
     _FAKE_DB_[plan_id] = [
         RoomOut(id= "1", plan_id=plan_id, raw_label= "BED",    confidence= 0.98),
         RoomOut(id= "2", plan_id=plan_id, raw_label= "LIVING", confidence= 0.95),
-        RoomOut(id= "3", plan_id=plan_id, raw_label= "MECH",   confidence= 0.92),
+        RoomOut(id= "3", plan_id=plan_id, raw_label= "OFC",   confidence= 0.92),
         ]
     
 def get_rooms(plan_id: str) -> List[RoomOut]:
