@@ -11,4 +11,4 @@ async def upload_plan(file: UploadFile = File(...)):
     filepath = os.path.join(UPLOAD_DIR, f"{file_id}_{file.filename}")
     with open(filepath, "wb") as f:
         f.write(await file.read())
-    return {"file_id": file_id, "filename": file.filename}
+    return {"file_id": file_id, "filename": file.filename, "filepath": filepath}

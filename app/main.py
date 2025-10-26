@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from app.api.routers import files, jobs, rooms, rules
+from app.api.routers import files, jobs, plans, rooms, rules
 
 app = FastAPI(
     title="LoadMap AI",
@@ -8,6 +8,7 @@ app = FastAPI(
 )
 
 app.include_router(files.router, prefix="/files", tags=["files"])
+app.include_router(plans.router, prefix="/plans", tags=["plans"])
 app.include_router(jobs.router, prefix="/jobs", tags=["jobs"])
 app.include_router(rooms.router, tags=["rooms"])
 app.include_router(rules.router, prefix="/rules", tags=["rules"])
