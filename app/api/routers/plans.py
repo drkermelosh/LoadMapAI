@@ -24,7 +24,7 @@ def create_plan(plan_in: PlanIn):
     
 @router.get(
         "", 
-        response_model=List[PlanOut],
+        response_model=PlansResponse,
         summary="List plan with pagination and sorting",
         responses={},
 )
